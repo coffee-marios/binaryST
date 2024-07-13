@@ -18,6 +18,35 @@ class Tree {
     this.root = binaryOrg(unique, 0, lenUnique - 1);
     return this.root;
   }
+  insert(value) {
+    if (this.root === null) {
+      this.root = new Node(value);
+      console.log(true, this.root);
+
+      return this.root;
+    } else {
+      insertVal(this.root, value);
+    }
+  }
+  get_root() {
+    return this.root;
+  }
+}
+
+function insertVal(node, value) {
+  if (node === null) {
+    node = new Node(value);
+    return node;
+  }
+
+  if (value < node.data) {
+    node.leftNode = insertVal(node.leftNode, value);
+  }
+
+  if (value > node.data) {
+    node.rightNode = insertVal(node.rightNode, value);
+  }
+  return node;
 }
 
 function compare(a, b) {
@@ -38,9 +67,8 @@ function binaryOrg(arr, start, end) {
 
 const tree = new Tree();
 
-const root = tree.buildTree([1, 7, 4]);
+//const root = tree.buildTree([]);
 
-// console.log(tree.leftNode);
 const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null) {
     return;
@@ -53,5 +81,18 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
     prettyPrint(node.leftNode, `${prefix}${isLeft ? "    " : "│   "}`, true);
   }
 };
+
+//prettyPrint(root);
+tree.insert(20);
+
+tree.insert(14);
+tree.insert(10);
+tree.insert(10);
+//
+let root = tree.get_root();
+console.log("\n");
+
+console.log(root);
+console.log("\n");
 
 prettyPrint(root);
