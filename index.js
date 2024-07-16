@@ -18,6 +18,19 @@ class Tree {
     this.root = binaryOrg(unique, 0, lenUnique - 1);
     return this.root;
   }
+  find(value, node = this.root) {
+    if (node === null) {
+      return false;
+    }
+    if (node.data === value) {
+      return node;
+    }
+    if (node.data < value) {
+      return this.find(value, node.rightNode);
+    } else if (node.data > value) {
+      return this.find(value, node.leftNode);
+    }
+  }
   insert(value) {
     if (this.root === null) {
       this.root = new Node(value);
@@ -142,3 +155,11 @@ console.log("\n");
 prettyPrint(root);
 tree.delete(5);
 prettyPrint(root);
+
+console.log(tree.find(5));
+console.log(tree.find(20));
+console.log(tree.find(13));
+console.log(tree.find(6));
+console.log(tree.find(8));
+console.log(tree.find(4));
+console.log(tree.find(2));
