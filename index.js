@@ -28,6 +28,38 @@ class Tree {
       insertVal(this.root, value);
     }
   }
+  delete(value, node = this.root) {
+    if (node === null) return null;
+
+    if (node.data < value) {
+      node.rightNode = this.delete(value, node.rightNode);
+    }
+    if (node.data > value) {
+      node.leftNode = this.delete(value, node.leftNode);
+    }
+    if (node.data === value) {
+      if (node.leftNode === null) {
+        return node.rightNode;
+      }
+      if (node.rightNode === null) {
+        return node.leftNode;
+      }
+      // Get the inorder successor (smallest in the right subtree)
+      node.data = this.minValue(node.rightNode);
+
+      // Delete the inorder successor
+      node.rightNode = this.delete(node.data, node.rightNode);
+    }
+    return node;
+  }
+  minValue(node) {
+    let current = node;
+    while (current.leftNode !== null) {
+      current = current.leftNode;
+    }
+    return current.data;
+  }
+
   get_root() {
     return this.root;
   }
@@ -67,7 +99,7 @@ function binaryOrg(arr, start, end) {
 
 const tree = new Tree();
 
-//const root = tree.buildTree([]);
+//const root = tree.buildTree([1, 2, 3, 4, 5, 6, 7, 10]);
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null) {
@@ -84,15 +116,29 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 //prettyPrint(root);
 tree.insert(20);
+tree.insert(13);
+tree.insert(17);
+tree.insert(5);
+tree.insert(8);
 
-tree.insert(14);
+tree.insert(4);
+tree.insert(50);
+
+tree.insert(6);
+
+tree.insert(2);
+tree.insert(3);
+
 tree.insert(10);
-tree.insert(10);
-//
+// tree.insert(10);
+
+//tree.delete(10);
 let root = tree.get_root();
 console.log("\n");
 
 console.log(root);
 console.log("\n");
 
+prettyPrint(root);
+tree.delete(5);
 prettyPrint(root);
