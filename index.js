@@ -41,6 +41,32 @@ class Tree {
       insertVal(this.root, value);
     }
   }
+  levelOrder(callback, node = this.root) {
+    const arr = [];
+    const values = [];
+
+    if (node === null) return;
+    arr.push(node);
+    while (arr.length > 0) {
+      let nodeElement = arr.shift();
+      if (!callback) {
+        values.push(nodeElement.data);
+      } else {
+        values.push(callback(nodeElement));
+      }
+
+      if (nodeElement.leftNode !== null) {
+        arr.push(nodeElement.leftNode);
+      }
+      if (nodeElement.rightNode !== null) {
+        console.log(false, nodeElement.data);
+
+        arr.push(nodeElement.rightNode);
+      }
+    }
+
+    return values;
+  }
   delete(value, node = this.root) {
     if (node === null) return null;
 
@@ -156,10 +182,17 @@ prettyPrint(root);
 tree.delete(5);
 prettyPrint(root);
 
-console.log(tree.find(5));
-console.log(tree.find(20));
-console.log(tree.find(13));
-console.log(tree.find(6));
-console.log(tree.find(8));
-console.log(tree.find(4));
-console.log(tree.find(2));
+// console.log(tree.find(5));
+// console.log(tree.find(20));
+// console.log(tree.find(13));
+// console.log(tree.find(6));
+// console.log(tree.find(8));
+// console.log(tree.find(4));
+// console.log(tree.find(2));
+
+console.log(tree.levelOrder());
+console.log(
+  tree.levelOrder(function callback(node) {
+    return node.data * 2;
+  })
+);
