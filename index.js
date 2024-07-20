@@ -41,6 +41,21 @@ class Tree {
       insertVal(this.root, value);
     }
   }
+  inOrder(callback, node = this.root, values = []) {
+    if (node === null) return;
+    if (node.leftNode) {
+      this.inOrder(callback, node.leftNode, values);
+    }
+    if (!callback) {
+      values.push(node.data);
+    } else {
+      values.push(callback(node));
+    }
+    if (node.rightNode) {
+      this.inOrder(callback, node.rightNode, values);
+    }
+    return values;
+  }
   levelOrder(callback, node = this.root) {
     const arr = [];
     const values = [];
@@ -217,8 +232,14 @@ let root_2 = tree_2.get_root();
 prettyPrint(root_2);
 
 console.log(tree_2.preOrder());
+// console.log(
+//   tree_2.preOrder(function callback(node) {
+//     return node.data * 2;
+//   })
+// );
+console.log(tree_2.inOrder());
 console.log(
-  tree_2.preOrder(function callback(node) {
-    return node.data * 2;
+  tree_2.inOrder(function callback(node) {
+    return node.data * 3;
   })
 );
