@@ -120,6 +120,21 @@ class Tree {
     }
     return node;
   }
+  postOrder(callback, node = this.root, values = []) {
+    if (node === null) return;
+    if (node.leftNode) {
+      this.postOrder(callback, node.leftNode, values);
+    }
+    if (node.rightNode) {
+      this.postOrder(callback, node.rightNode, values);
+    }
+    if (!callback) {
+      values.push(node.data);
+    } else {
+      values.push(callback(node));
+    }
+    return values;
+  }
   minValue(node) {
     let current = node;
     while (current.leftNode !== null) {
@@ -238,8 +253,14 @@ console.log(tree_2.preOrder());
 //   })
 // );
 console.log(tree_2.inOrder());
+// console.log(
+//   tree_2.inOrder(function callback(node) {
+//     return node.data * 3;
+//   })
+// );
+console.log(tree_2.postOrder());
 console.log(
-  tree_2.inOrder(function callback(node) {
-    return node.data * 3;
+  tree_2.postOrder(function add(node) {
+    return node.data + 2;
   })
 );
