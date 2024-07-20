@@ -59,12 +59,26 @@ class Tree {
         arr.push(nodeElement.leftNode);
       }
       if (nodeElement.rightNode !== null) {
-        console.log(false, nodeElement.data);
-
         arr.push(nodeElement.rightNode);
       }
     }
 
+    return values;
+  }
+  preOrder(callback, node = this.root, values = []) {
+    if (node === null) return;
+    if (!callback) {
+      values.push(node.data);
+    } else {
+      values.push(callback(node));
+    }
+
+    if (node.leftNode) {
+      this.preOrder(callback, node.leftNode, values);
+    }
+    if (node.rightNode) {
+      this.preOrder(callback, node.rightNode, values);
+    }
     return values;
   }
   delete(value, node = this.root) {
@@ -190,9 +204,21 @@ prettyPrint(root);
 // console.log(tree.find(4));
 // console.log(tree.find(2));
 
-console.log(tree.levelOrder());
+//console.log(tree.levelOrder());
+// console.log(
+//   tree.levelOrder(function callback(node) {
+//     return node.data * 2;
+//   })
+// );
+const tree_2 = new Tree();
+//tree_2.buildTree(["F", "D", "B", "A", "C", "E", "J", "G", "I", "H", "K"]);
+tree_2.buildTree([1, 2, 3, 4, 5, 6, 7]);
+let root_2 = tree_2.get_root();
+prettyPrint(root_2);
+
+console.log(tree_2.preOrder());
 console.log(
-  tree.levelOrder(function callback(node) {
+  tree_2.preOrder(function callback(node) {
     return node.data * 2;
   })
 );
