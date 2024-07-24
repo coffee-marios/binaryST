@@ -32,7 +32,19 @@ class Tree {
       return this.find(value, node.leftNode);
     }
   }
-  height(value, node, start = false) {
+  depth(value, node = this.root, count = 0) {
+    if (node === null) return 0;
+    count = count + 1;
+    if (node.data === value) return count;
+
+    if (node.data < value) {
+      return this.depth(value, node.rightNode, count);
+    }
+    if (node.data > value) {
+      return this.depth(value, node.leftNode, count);
+    }
+  }
+  height(value, node = null, start = false) {
     if (start === false) {
       node = this.find(value);
       if (node === false) return null;
@@ -289,3 +301,4 @@ console.log(tree_2.inOrder());
 // );
 
 console.log(tree_2.height(6));
+console.log(tree_2.depth(7));
