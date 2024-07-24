@@ -9,6 +9,7 @@ class Node {
 class Tree {
   constructor() {
     this.root = null;
+    this.nodeEdge = { left: 0, right: 0 };
   }
   buildTree(array) {
     const unique = [...new Set(array)];
@@ -31,6 +32,26 @@ class Tree {
       return this.find(value, node.leftNode);
     }
   }
+  height(value, node, start = false) {
+    if (start === false) {
+      node = this.find(value);
+      if (node === false) return null;
+
+      start = true;
+    }
+    if (node === null) return 0;
+
+    // leftHeight (and rightHeight) will get the value of heightNode (+1 every time it is called)
+
+    let leftHeight = this.height(value, node.leftNode, start);
+
+    let rightHeight = this.height(value, node.rightNode, start);
+
+    let heightNode = Math.max(leftHeight, rightHeight) + 1;
+
+    return heightNode;
+  }
+
   insert(value) {
     if (this.root === null) {
       this.root = new Node(value);
@@ -242,7 +263,7 @@ prettyPrint(root);
 // );
 const tree_2 = new Tree();
 //tree_2.buildTree(["F", "D", "B", "A", "C", "E", "J", "G", "I", "H", "K"]);
-tree_2.buildTree([1, 2, 3, 4, 5, 6, 7]);
+tree_2.buildTree([1, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
 let root_2 = tree_2.get_root();
 prettyPrint(root_2);
 
@@ -258,9 +279,13 @@ console.log(tree_2.inOrder());
 //     return node.data * 3;
 //   })
 // );
-console.log(tree_2.postOrder());
-console.log(
-  tree_2.postOrder(function add(node) {
-    return node.data + 2;
-  })
-);
+
+//console.log(tree_2.postOrder());
+
+// console.log(
+//   tree_2.postOrder(function add(node) {
+//     return node.data + 2;
+//   })
+// );
+
+console.log(tree_2.height(6));
