@@ -179,6 +179,23 @@ class Tree {
   get_root() {
     return this.root;
   }
+  isBalanced() {
+    let isBal = true;
+    if (this.root === null) return true;
+
+    const depthCompare = function (node) {
+      if (node === null) return 0;
+      const left = depthCompare(node.leftNode);
+      const right = depthCompare(node.rightNode);
+      const depthAdd = Math.abs(left - right);
+      if (depthAdd > 1) {
+        isBal = false;
+      }
+      return Math.max(left, right) + 1;
+    };
+    depthCompare(this.root);
+    return isBal;
+  }
 }
 
 function insertVal(node, value) {
@@ -258,6 +275,7 @@ console.log("\n");
 prettyPrint(root);
 tree.delete(5);
 prettyPrint(root);
+console.log(tree.isBalanced());
 
 // console.log(tree.find(5));
 // console.log(tree.find(20));
@@ -279,13 +297,13 @@ tree_2.buildTree([1, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
 let root_2 = tree_2.get_root();
 prettyPrint(root_2);
 
-console.log(tree_2.preOrder());
+// console.log(tree_2.preOrder());
 // console.log(
 //   tree_2.preOrder(function callback(node) {
 //     return node.data * 2;
 //   })
 // );
-console.log(tree_2.inOrder());
+//console.log(tree_2.inOrder());
 // console.log(
 //   tree_2.inOrder(function callback(node) {
 //     return node.data * 3;
@@ -300,5 +318,6 @@ console.log(tree_2.inOrder());
 //   })
 // );
 
-console.log(tree_2.height(6));
-console.log(tree_2.depth(7));
+//console.log(tree_2.height(6));
+//console.log(tree_2.depth(7));
+console.log(tree_2.isBalanced());
