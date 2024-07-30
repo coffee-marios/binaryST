@@ -196,6 +196,19 @@ class Tree {
     depthCompare(this.root);
     return isBal;
   }
+
+  rebalance() {
+    const allNodes = [];
+    if (this.root === null) return;
+    const getData = function (node) {
+      if (node === null) return;
+      allNodes.push(node.data);
+      const left = getData(node.leftNode);
+      const right = getData(node.rightNode);
+    };
+    getData(this.root);
+    this.root = this.buildTree(allNodes);
+  }
 }
 
 function insertVal(node, value) {
@@ -274,6 +287,11 @@ console.log("\n");
 
 prettyPrint(root);
 tree.delete(5);
+prettyPrint(root);
+console.log(tree.isBalanced());
+tree.rebalance();
+root = tree.get_root();
+
 prettyPrint(root);
 console.log(tree.isBalanced());
 
