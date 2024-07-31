@@ -35,12 +35,20 @@ console.log(tree.levelOrder());
 console.log(tree.inOrder());
 console.log(tree.postOrder());
 
+// Unbalance the tree
 tree.insert(120);
 tree.insert(113);
 tree.insert(617);
 tree.insert(115);
 tree.insert(890);
 
+root = tree.get_root();
+
+prettyPrint(root);
+console.log(tree.isBalanced());
+
+// Rebalance the tree
+tree.rebalance();
 root = tree.get_root();
 
 prettyPrint(root);

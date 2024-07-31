@@ -340,4 +340,4 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 // //console.log(tree_2.depth(7));
 // console.log(tree_2.isBalanced());
 
-export { Node, Tree, prettyPrint };
+export { Tree, prettyPrint };
