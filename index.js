@@ -260,82 +260,84 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
-//prettyPrint(root);
-tree.insert(20);
-tree.insert(13);
-tree.insert(17);
-tree.insert(5);
-tree.insert(8);
+// //prettyPrint(root);
+// tree.insert(20);
+// tree.insert(13);
+// tree.insert(17);
+// tree.insert(5);
+// tree.insert(8);
 
-tree.insert(4);
-tree.insert(50);
+// tree.insert(4);
+// tree.insert(50);
 
-tree.insert(6);
+// tree.insert(6);
 
-tree.insert(2);
-tree.insert(3);
+// tree.insert(2);
+// tree.insert(3);
 
-tree.insert(10);
 // tree.insert(10);
+// // tree.insert(10);
 
-//tree.delete(10);
-let root = tree.get_root();
-console.log("\n");
+// //tree.delete(10);
+// let root = tree.get_root();
+// console.log("\n");
 
-console.log(root);
-console.log("\n");
+// console.log(root);
+// console.log("\n");
 
-prettyPrint(root);
-tree.delete(5);
-prettyPrint(root);
-console.log(tree.isBalanced());
-tree.rebalance();
-root = tree.get_root();
+// prettyPrint(root);
+// tree.delete(5);
+// prettyPrint(root);
+// console.log(tree.isBalanced());
+// tree.rebalance();
+// root = tree.get_root();
 
-prettyPrint(root);
-console.log(tree.isBalanced());
+// prettyPrint(root);
+// console.log(tree.isBalanced());
 
-// console.log(tree.find(5));
-// console.log(tree.find(20));
-// console.log(tree.find(13));
-// console.log(tree.find(6));
-// console.log(tree.find(8));
-// console.log(tree.find(4));
-// console.log(tree.find(2));
+// // console.log(tree.find(5));
+// // console.log(tree.find(20));
+// // console.log(tree.find(13));
+// // console.log(tree.find(6));
+// // console.log(tree.find(8));
+// // console.log(tree.find(4));
+// // console.log(tree.find(2));
 
-//console.log(tree.levelOrder());
-// console.log(
-//   tree.levelOrder(function callback(node) {
-//     return node.data * 2;
-//   })
-// );
-const tree_2 = new Tree();
-//tree_2.buildTree(["F", "D", "B", "A", "C", "E", "J", "G", "I", "H", "K"]);
-tree_2.buildTree([1, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
-let root_2 = tree_2.get_root();
-prettyPrint(root_2);
+// //console.log(tree.levelOrder());
+// // console.log(
+// //   tree.levelOrder(function callback(node) {
+// //     return node.data * 2;
+// //   })
+// // );
+// const tree_2 = new Tree();
+// //tree_2.buildTree(["F", "D", "B", "A", "C", "E", "J", "G", "I", "H", "K"]);
+// tree_2.buildTree([1, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+// let root_2 = tree_2.get_root();
+// prettyPrint(root_2);
 
-// console.log(tree_2.preOrder());
-// console.log(
-//   tree_2.preOrder(function callback(node) {
-//     return node.data * 2;
-//   })
-// );
-//console.log(tree_2.inOrder());
-// console.log(
-//   tree_2.inOrder(function callback(node) {
-//     return node.data * 3;
-//   })
-// );
+// // console.log(tree_2.preOrder());
+// // console.log(
+// //   tree_2.preOrder(function callback(node) {
+// //     return node.data * 2;
+// //   })
+// // );
+// //console.log(tree_2.inOrder());
+// // console.log(
+// //   tree_2.inOrder(function callback(node) {
+// //     return node.data * 3;
+// //   })
+// // );
 
-//console.log(tree_2.postOrder());
+// //console.log(tree_2.postOrder());
 
-// console.log(
-//   tree_2.postOrder(function add(node) {
-//     return node.data + 2;
-//   })
-// );
+// // console.log(
+// //   tree_2.postOrder(function add(node) {
+// //     return node.data + 2;
+// //   })
+// // );
 
-//console.log(tree_2.height(6));
-//console.log(tree_2.depth(7));
-console.log(tree_2.isBalanced());
+// //console.log(tree_2.height(6));
+// //console.log(tree_2.depth(7));
+// console.log(tree_2.isBalanced());
+
+export { Node, Tree, prettyPrint };

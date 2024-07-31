@@ -26,4 +26,11 @@ const tree = new Tree();
 const data = numbersTree();
 tree.buildTree(data);
 const root = tree.get_root();
+
 prettyPrint(root);
+console.log(tree.isBalanced());
+
+console.log(tree.preOrder());
+console.log(tree.levelOrder());
+console.log(tree.inOrder());
+console.log(tree.postOrder());
