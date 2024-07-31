@@ -1,4 +1,4 @@
-import { Node, Tree, prettyPrint } from "./index.js";
+import { Tree, prettyPrint } from "./index.js";
 
 function randomNumber(min, max) {
   // The maximum is exclusive and the minimum is inclusive
@@ -25,7 +25,7 @@ function numbersTree(num = 10) {
 const tree = new Tree();
 const data = numbersTree();
 tree.buildTree(data);
-const root = tree.get_root();
+let root = tree.get_root();
 
 prettyPrint(root);
 console.log(tree.isBalanced());
@@ -34,3 +34,14 @@ console.log(tree.preOrder());
 console.log(tree.levelOrder());
 console.log(tree.inOrder());
 console.log(tree.postOrder());
+
+tree.insert(120);
+tree.insert(113);
+tree.insert(617);
+tree.insert(115);
+tree.insert(890);
+
+root = tree.get_root();
+
+prettyPrint(root);
+console.log(tree.isBalanced());
