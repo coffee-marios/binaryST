@@ -201,8 +201,8 @@ class Tree {
     const getData = function (node) {
       if (node === null) return;
       allNodes.push(node.data);
-      const left = getData(node.leftNode);
-      const right = getData(node.rightNode);
+      getData(node.leftNode);
+      getData(node.rightNode);
     };
     getData(this.root);
     this.root = this.buildTree(allNodes);
